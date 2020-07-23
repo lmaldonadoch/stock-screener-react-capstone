@@ -1,7 +1,12 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
+import { useDispatch, useSelector } from 'react-redux';
+import { requestInitialData } from '../actions/searchedStockActions';
 
 function Details() {
+  const dispatch = useDispatch();
+  const [stock, setStock] = React.useState('AAPL');
+  const state = useSelector((state) => state.searchedStock);
   const data = {
     labels: ['11:00', '12:00'],
     datasets: [
@@ -14,9 +19,26 @@ function Details() {
       },
     ],
   };
+
+  const fetchData = (e) => {
+    e.preventDefault();
+    dispatch(requestInitialData(stock.toLocaleUpperCase()));
+  };
+
   return (
     <div className="Details">
-      <Line data={data} />
+      <form className="books-form" onSubmit={fetchData}>
+        <input
+          type="text"
+          placeholder="Book Title"
+          className="title-input"
+          name="title"
+          onChange={(e) => setStock(e.target.value)}
+        />
+        <input type="submit" value="Search Stock" />
+      </form>
+      {state.isFetching && <p>Please wait...</p>}
+      <Line data={state.data} />
     </div>
   );
 }
