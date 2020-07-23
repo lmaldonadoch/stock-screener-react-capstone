@@ -14,6 +14,7 @@ const initialState = {
       },
     ],
   },
+  stockInfo: {},
 };
 
 const searchedStockReducer = (state = initialState, action) => {
@@ -33,11 +34,11 @@ const searchedStockReducer = (state = initialState, action) => {
     case 'RECEIVED_STOCK':
       let price = [];
       let labels = [];
-      console.log(payload.historical);
       for (let i = 0; i < 253; i += 1) {
-        price.unshift(payload.historical[i].close);
-        labels.unshift(moment(payload.historical[i].date).format('l'));
+        price.unshift(payload[0].historical[i].close);
+        labels.unshift(moment(payload[0].historical[i].date).format('l'));
       }
+      console.log(payload[1]);
       return {
         ...state,
         loading: false,
@@ -45,7 +46,7 @@ const searchedStockReducer = (state = initialState, action) => {
           labels: labels,
           datasets: [
             {
-              label: payload.symbol,
+              label: payload[0].symbol,
               data: price,
               backgroundColor: 'rgba(232,89,0, 0.4)',
               borderColor: 'rgba(232,89,0, 1)',
@@ -53,6 +54,7 @@ const searchedStockReducer = (state = initialState, action) => {
             },
           ],
         },
+        stockInfo: payload[1][0],
       };
     default:
       return state;
