@@ -7,32 +7,13 @@ function StocksList({ size }) {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.mountedStocks);
 
-  useEffect(() => {
-    if (state.mostActive.length === 0) dispatch(requestMountedStocksInfo());
-  }, []);
+  // useEffect(() => {
+  //   if (state.mostActive.length === 0) dispatch(requestMountedStocksInfo());
+  // }, []);
 
   return (
     <div className="StockList">
       {state.isFetching && <p>Please wait...</p>}
-
-      <div className="info-box most-active-box" key={1} id="AAPL">
-        <Link to="/details/AAPL">
-          <p className="info-box-company" id="AAPL">
-            Apple Inc.
-          </p>
-          <p className="info-box-ticker" id="AAPL">
-            AAPL
-          </p>
-          <div className="info-box-price-container" id="AAPL">
-            <span className="info-box-price green" id="AAPL">
-              $400
-            </span>
-            <span className="info-box-change green" id="AAPL">
-              (+15%)
-            </span>
-          </div>
-        </Link>
-      </div>
 
       <h3>Most Active Stocks</h3>
 

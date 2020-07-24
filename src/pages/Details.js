@@ -17,6 +17,7 @@ function Details({ match }) {
         match.params.stock !== state.data.datasets[0].label
       )
         dispatch(requestStockInfo(match.params.stock.toLocaleUpperCase()));
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }, [match]);
 
