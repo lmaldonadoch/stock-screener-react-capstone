@@ -6,18 +6,11 @@ import StocksForm from '../containers/StocksForm';
 import moment from 'moment';
 
 function Details() {
-  const dispatch = useDispatch();
-  const [stock, setStock] = React.useState('AAPL');
   const state = useSelector((state) => state.searchedStock);
-
-  const fetchData = (data) => {
-    setStock(data);
-    dispatch(requestStockInfo(stock.toLocaleUpperCase()));
-  };
 
   return (
     <div className="Details">
-      <StocksForm clickHandler={fetchData} />
+      <StocksForm />
       {state.isFetching && <p>Please wait...</p>}
       <Line data={state.data} />
       <div>
