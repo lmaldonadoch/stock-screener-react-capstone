@@ -24,12 +24,12 @@ const searchedStockReducer = (state = initialState, action) => {
     case 'FETCHING_STOCK':
       return {
         ...state,
-        loading: true,
+        isFetching: true,
       };
     case 'ERROR_FETCHING_DATA':
       return {
         ...state,
-        loading: false,
+        isFetching: false,
       };
     case 'RECEIVED_STOCK':
       let price = [];
@@ -38,10 +38,9 @@ const searchedStockReducer = (state = initialState, action) => {
         price.unshift(payload[0].historical[i].close);
         labels.unshift(moment(payload[0].historical[i].date).format('l'));
       }
-      console.log(payload[1]);
       return {
         ...state,
-        loading: false,
+        isFetching: false,
         data: {
           labels: labels,
           datasets: [

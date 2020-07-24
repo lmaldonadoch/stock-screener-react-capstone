@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import StocksForm from '../containers/StocksForm';
 
 function Nav() {
   return (
@@ -11,6 +12,11 @@ function Nav() {
         <Link to="/details">
           <li>Details</li>
         </Link>
+        <li>
+          <div className="form-container-nav">
+            <StocksForm />
+          </div>
+        </li>
       </ul>
     </nav>
   );

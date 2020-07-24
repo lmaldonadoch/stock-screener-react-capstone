@@ -1,30 +1,35 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { requestStockInfo } from '../actions/searchedStockActions';
+import { useLocation, useHistory } from 'react-router-dom';
 
 function StocksForm() {
   const dispatch = useDispatch();
+  const location = useLocation();
+  let history = useHistory();
   const [stock, setStock] = React.useState('AAPL');
-  const state = useSelector((state) => state.searchedStock);
 
   const fetchData = (e) => {
     e.preventDefault();
     dispatch(requestStockInfo(stock.toLocaleUpperCase()));
+    if (location.pathname !== '/details') {
+      history.push('/details');
+    }
   };
 
   return (
-    <div className="Details">
-      <form className="books-form" onSubmit={fetchData}>
-        <input
-          type="text"
-          placeholder="Book Title"
-          className="title-input"
-          name="title"
-          onChange={(e) => setStock(e.target.value)}
-        />
-        <input type="submit" />
-      </form>
-    </div>
+    <form className="books-form" onSubmit={fetchData}>
+      <input
+        type="text"
+        placeholder="Search Symbol"
+        className="title-input"
+        name="title"
+        onChange={(e) => setStock(e.target.value)}
+      />
+      <button type="submit">
+        <i className="fas fa-chart-line"></i>
+      </button>
+    </form>
   );
 }
 
