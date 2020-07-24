@@ -19,9 +19,15 @@ export const requestMountedStocksInfo = () => async (dispatch) => {
     );
     const mostLosers = await responseMostLosers.json();
 
+    const responseInterestingStocks = await fetch(
+      `https://financialmodelingprep.com/api/v3/quote/MSFT,AAPL,GOOG,FB,INTC,CSCO,CMCSA,PEP,ADBE,NVDA,NFLX,PYPL,XOM,C,PFE,GE,AIG,WMT,IBM,BAC,JNJ,GS,PG,JPM,NAK,PLM,TGB,DPW,NGD,AIM,AXU,GMO,SVM,NOG?apikey=2d556769d7598ca278b16bc77d65e332`
+    );
+    const interestingStocks = await responseInterestingStocks.json();
+    console.log(interestingStocks);
+
     await dispatch({
       type: 'RECEIVED_MOUNTED_STOCKS',
-      payload: [mostActive, mostGainers, mostLosers],
+      payload: [mostActive, mostGainers, mostLosers, interestingStocks],
     });
   } catch (error) {
     dispatch({
