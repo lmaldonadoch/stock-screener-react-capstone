@@ -6,7 +6,7 @@ function Catalog() {
     <div className="Catalog">
       <header className="Catalog-header">
         <p>Catalog</p>
-        <StocksList />
+        <StocksList size={4} />
       </header>
     </div>
   );

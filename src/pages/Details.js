@@ -1,11 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import StocksForm from '../containers/StocksForm';
 import moment from 'moment';
+import StocksList from '../containers/StocksList';
+import { requestStockInfo } from '../actions/searchedStockActions';
 
-function Details() {
+function Details({ match }) {
   const state = useSelector((state) => state.searchedStock);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (match.params.stock) {
+      if (
+        Object.keys(state.stockInfo).length === 0 ||
+        match.params.stock !== state.data.datasets[0].label
+      )
+        dispatch(requestStockInfo(match.params.stock.toLocaleUpperCase()));
+    }
+  }, [match]);
 
   if (Object.keys(state.stockInfo).length !== 0) {
     return (
@@ -101,6 +114,10 @@ function Details() {
               <span className="info-data">{state.stockInfo.pe}</span>
             </div>
           </div>
+          <div className="StocksList-container">
+            <h3>Also take a look at</h3>
+            <StocksList size={2} />
+          </div>
         </div>
       </div>
     );
@@ -110,6 +127,8 @@ function Details() {
       <div className="form-container-details">
         <StocksForm />
       </div>
+
+      {state.isFetching && <p>Please wait...</p>}
     </div>
   );
 }

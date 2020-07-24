@@ -40,7 +40,7 @@ li {
 
 .form-container-nav {
   height: 40px;
-  width: 150px;
+  width: 170px;
 }
 
 form {
@@ -60,7 +60,7 @@ form button {
 form input {
   border: #f1f2f5 solid 1px;
   border-radius: 4px;
-  width: 100px;
+  width: 120px;
   height: 30px;
   padding-left: 10px;
 }
@@ -106,6 +106,10 @@ form button {
   padding: 10px;
   color: #fff;
   border-radius: 7px;
+}
+
+.info-box a {
+  color: #fff;
 }
 
 .main-info {
@@ -172,4 +176,88 @@ canvas {
 
 .border-bottom {
   border-bottom: #f1f2f5 solid 2px;
+}
+
+.StocksList-container {
+  width: 50%;
+}
+
+.StocksList-container h3 {
+  text-align: center;
+  font-size: 25px;
+  font-weight: 900;
+}
+
+/*StockList styling*/
+
+.StockList {
+  margin: 30px auto 0 auto;
+  width: 90%;
+  background: #fff;
+  box-shadow: -2px -2px 8px rgba(7, 8, 9, 0.3);
+  padding: 30px;
+  border-radius: 10px;
+}
+
+.StockList h3 {
+  margin: 100px auto 50px auto;
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.StockList .main-info-container .info-box {
+  text-align: center;
+}
+
+.most-active-box {
+  background-color: rgb(232, 89, 0);
+  box-shadow: -6px -6px 8px rgba(232, 89, 0, 0.45);
+  cursor: pointer;
+}
+
+.most-gainer-box {
+  background-color: rgb(45, 209, 164);
+  box-shadow: -6px -6px 8px rgba(45, 209, 164, 0.45);
+  cursor: pointer;
+}
+
+.most-loser-box {
+  background-color: rgb(227, 79, 91);
+  box-shadow: -6px -6px 8px rgba(227, 79, 91, 0.45);
+  cursor: pointer;
+}
+
+.info-box-company {
+  font-size: 11px;
+}
+
+.info-box-ticker {
+  font-size: 25px;
+  font-weight: bold;
+  margin: 15px auto;
+}
+
+.info-box-price-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.info-box-price {
+  font-size: 20px;
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.info-box-change {
+  font-size: 13px;
+}
+
+.red {
+  color: rgb(246, 160, 160);
+}
+
+.green {
+  color: rgb(204, 255, 208);
 }

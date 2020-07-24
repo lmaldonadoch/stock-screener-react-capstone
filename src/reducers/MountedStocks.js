@@ -1,9 +1,9 @@
 const initialState = {
   isFetching: false,
   didInvalidate: false,
-  mostActive: {},
-  mostGainer: {},
-  mostLoser: {},
+  mostActive: [],
+  mostGainer: [],
+  mostLoser: [],
 };
 
 const searchedStockReducer = (state = initialState, action) => {

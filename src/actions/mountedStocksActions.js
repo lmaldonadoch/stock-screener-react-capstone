@@ -18,7 +18,7 @@ export const requestMountedStocksInfo = () => async (dispatch) => {
       `https://financialmodelingprep.com/api/v3/losers?apikey=2d556769d7598ca278b16bc77d65e332`
     );
     const mostLosers = await responseMostLosers.json();
-    console.log(mostActive);
+    console.log(mostLosers);
 
     await dispatch({
       type: 'RECEIVED_MOUNTED_STOCKS',

@@ -49,7 +49,7 @@ const searchedStockReducer = (state = initialState, action) => {
               data: price,
               backgroundColor: 'rgba(232,89,0, 0.4)',
               borderColor: 'rgba(232,89,0, 1)',
-              pointBorderColor: 'rgba(232,89,0, 0.5)',
+              pointBorderColor: 'transparent',
             },
           ],
         },
