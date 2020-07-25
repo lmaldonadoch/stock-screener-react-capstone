@@ -2,14 +2,22 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { requestMountedStocksInfo } from '../actions/mountedStocksActions';
 import { Link } from 'react-router-dom';
+import Stock from '../components/Stock';
 
 function StocksList({ size }) {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.mountedStocks);
+  const filterState = useSelector((state) => state.filter);
 
-  // useEffect(() => {
-  //   if (state.mostActive.length === 0) dispatch(requestMountedStocksInfo());
-  // }, []);
+  useEffect(() => {
+    if (state.mostActive.length === 0) dispatch(requestMountedStocksInfo());
+  }, []);
+
+  let interestingStockSize = -1;
+
+  if (size === 2) {
+    interestingStockSize = 2;
+  }
 
   return (
     <div className="StockList">
@@ -21,53 +29,21 @@ function StocksList({ size }) {
         {state.mostActive.slice(0, size).map((stock) => {
           if (stock.changesPercentage[1] === '+') {
             return (
-              <div
-                className="info-box most-active-box"
+              <Stock
+                stock={stock}
+                class={'green'}
                 key={stock.ticker}
-                id={stock.ticker}
-              >
-                <Link to={`/details/${stock.ticker}`}>
-                  <p className="info-box-company" id={stock.ticker}>
-                    {stock.companyName}
-                  </p>
-                  <p className="info-box-ticker" id={stock.ticker}>
-                    {stock.ticker}
-                  </p>
-                  <div className="info-box-price-container" id={stock.ticker}>
-                    <span className="info-box-price green" id={stock.ticker}>
-                      ${stock.price}
-                    </span>
-                    <span className="info-box-change green" id={stock.ticker}>
-                      {stock.changesPercentage}
-                    </span>
-                  </div>
-                </Link>
-              </div>
+                source={'most-active'}
+              />
             );
           }
           return (
-            <div
-              className="info-box most-active-box"
+            <Stock
+              stock={stock}
+              class={'red'}
               key={stock.ticker}
-              id={stock.ticker}
-            >
-              <Link to={`/details/${stock.ticker}`}>
-                <p className="info-box-company" id={stock.ticker}>
-                  {stock.companyName}
-                </p>
-                <p className="info-box-ticker" id={stock.ticker}>
-                  {stock.ticker}
-                </p>
-                <div className="info-box-price-container" id={stock.ticker}>
-                  <span className="info-box-price red" id={stock.ticker}>
-                    ${stock.price}
-                  </span>
-                  <span className="info-box-change red" id={stock.ticker}>
-                    {stock.changesPercentage}
-                  </span>
-                </div>
-              </Link>
-            </div>
+              source={'most-active'}
+            />
           );
         })}
       </div>
@@ -76,53 +52,13 @@ function StocksList({ size }) {
 
       <div className="main-info-container">
         {state.mostGainer.slice(0, size).map((stock) => {
-          if (stock.changesPercentage[1] === '+') {
-            return (
-              <div
-                className="info-box most-gainer-box"
-                key={stock.ticker}
-                id={stock.ticker}
-              >
-                <Link to={`/details/${stock.ticker}`}>
-                  <p className="info-box-company" id={stock.ticker}>
-                    {stock.companyName}
-                  </p>
-                  <p className="info-box-ticker">{stock.ticker}</p>
-                  <div className="info-box-price-container" id={stock.ticker}>
-                    <span className="info-box-price green" id={stock.ticker}>
-                      ${stock.price}
-                    </span>
-                    <span className="info-box-change green" id={stock.ticker}>
-                      {stock.changesPercentage}
-                    </span>
-                  </div>
-                </Link>
-              </div>
-            );
-          }
           return (
-            <div
-              className="info-box most-gainer-box"
+            <Stock
+              stock={stock}
+              class={'green'}
               key={stock.ticker}
-              id={stock.ticker}
-            >
-              <Link to={`/details/${stock.ticker}`}>
-                <p className="info-box-company" id={stock.ticker}>
-                  {stock.companyName}
-                </p>
-                <p className="info-box-ticker" id={stock.ticker}>
-                  {stock.ticker}
-                </p>
-                <div className="info-box-price-container" id={stock.ticker}>
-                  <span className="info-box-price red" id={stock.ticker}>
-                    ${stock.price}
-                  </span>
-                  <span className="info-box-change red" id={stock.ticker}>
-                    {stock.changesPercentage}
-                  </span>
-                </div>
-              </Link>
-            </div>
+              source={'most-gainer'}
+            />
           );
         })}
       </div>
@@ -130,55 +66,46 @@ function StocksList({ size }) {
       <h3>Biggest Percentage Losers</h3>
       <div className="main-info-container">
         {state.mostLoser.slice(0, size).map((stock) => {
-          if (stock.changesPercentage[1] === '+') {
+          return (
+            <Stock
+              stock={stock}
+              class={'red'}
+              key={stock.ticker}
+              source={'most-loser'}
+            />
+          );
+        })}
+      </div>
+
+      <h3>Top NYSE, NASDAQ, and AMEX stocks</h3>
+      <div className="main-info-container interesting-stocks-container">
+        {state.interestingStocks.slice(0, interestingStockSize).map((stock) => {
+          const formatted_stock = {
+            ticker: stock.symbol,
+            companyName: stock.name,
+            price: stock.price,
+            changesPercentage:
+              stock.changesPercentage > 0
+                ? `(+${stock.changesPercentage}%)`
+                : `(${stock.changesPercentage}%)`,
+          };
+          if (formatted_stock.changesPercentage[1] === '+') {
             return (
-              <div
-                className="info-box most-loser-box"
-                key={stock.ticker}
-                id={stock.ticker}
-              >
-                <Link to={`/details/${stock.ticker}`}>
-                  <p className="info-box-company" id={stock.ticker}>
-                    {stock.companyName}
-                  </p>
-                  <p className="info-box-ticker" id={stock.ticker}>
-                    {stock.ticker}
-                  </p>
-                  <div className="info-box-price-container" id={stock.ticker}>
-                    <span className="info-box-price green" id={stock.ticker}>
-                      ${stock.price}
-                    </span>
-                    <span className="info-box-change green" id={stock.ticker}>
-                      {stock.changesPercentage}
-                    </span>
-                  </div>
-                </Link>
-              </div>
+              <Stock
+                stock={formatted_stock}
+                class={'green'}
+                key={formatted_stock.ticker}
+                source={'interesting-stocks'}
+              />
             );
           }
           return (
-            <div
-              className="info-box most-loser-box"
-              key={stock.ticker}
-              id={stock.ticker}
-            >
-              <Link to={`/details/${stock.ticker}`}>
-                <p className="info-box-company" id={stock.ticker}>
-                  {stock.companyName}
-                </p>
-                <p className="info-box-ticker" id={stock.ticker}>
-                  {stock.ticker}
-                </p>
-                <div className="info-box-price-container" id={stock.ticker}>
-                  <span className="info-box-price red" id={stock.ticker}>
-                    ${stock.price}
-                  </span>
-                  <span className="info-box-change red" id={stock.ticker}>
-                    {stock.changesPercentage}
-                  </span>
-                </div>
-              </Link>
-            </div>
+            <Stock
+              stock={formatted_stock}
+              class={'red'}
+              key={formatted_stock.ticker}
+              source={'interesting-stocks'}
+            />
           );
         })}
       </div>

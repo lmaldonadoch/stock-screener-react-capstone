@@ -1,15 +1,18 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { changeFilter } from '../actions/filterActions';
 
 function Filter() {
   const filters = ['All', 'NYSE', 'NASDAQ', 'AMEX'];
+  const dispatch = useDispatch();
 
   const filterByCategory = (e) => {
     const { value } = e.target;
-    console.log(value);
+    dispatch(changeFilter(value));
   };
 
-  function filterByChar(e) {
-    console.log(e);
+  function filterByChar(value) {
+    dispatch(changeFilter(value));
   }
 
   return (

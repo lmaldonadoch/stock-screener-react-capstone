@@ -4,6 +4,7 @@ const initialState = {
   mostActive: [],
   mostGainer: [],
   mostLoser: [],
+  interestingStocks: [],
 };
 
 const searchedStockReducer = (state = initialState, action) => {
@@ -27,6 +28,7 @@ const searchedStockReducer = (state = initialState, action) => {
         mostActive: payload[0],
         mostGainer: payload[1],
         mostLoser: payload[2],
+        interestingStocks: payload[3],
       };
     default:
       return state;

@@ -124,19 +124,26 @@ form button {
   display: flex;
   width: 100%;
   justify-content: space-evenly;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 .info-box {
   padding: 10px;
   color: #fff;
   border-radius: 7px;
+  width: 20%;
+  min-width: fit-content;
+  margin: 30px;
+  text-align: center;
 }
 
 .info-box a {
   color: #fff;
 }
 
-.main-info {
+.main-info,
+.interesting-stocks-box {
   background-color: #837efd;
   box-shadow: -6px -6px 8px rgba(131, 126, 253, 0.45);
 }
@@ -185,8 +192,8 @@ canvas {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 20px;
-  padding-top: 20px;
+  padding-bottom: 60px;
+  padding-top: 60px;
 }
 
 .info-text {
@@ -293,6 +300,7 @@ canvas {
   justify-content: space-evenly;
   margin: 30px auto 0 auto;
   width: 90%;
+  flex-wrap: wrap;
 }
 
 .filter-button,
@@ -303,6 +311,7 @@ select {
   border-radius: 4px;
   padding: 6px;
   color: #fff;
-  font-size: 16px;
+  font-size: 20px;
   box-shadow: -6px -6px 8px rgba(31, 163, 235, 0.45);
+  margin: 15px;
 }
