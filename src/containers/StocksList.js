@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { requestMountedStocksInfo } from '../actions/mountedStocksActions';
-import { Link } from 'react-router-dom';
 import Stock from '../components/Stock';
 
 function StocksList({ size }) {
@@ -9,105 +8,127 @@ function StocksList({ size }) {
   const state = useSelector((state) => state.mountedStocks);
   const filterState = useSelector((state) => state.filter);
 
+  const [stocksToDisplay, setStocksToDisplay] = useState({
+    page: 0,
+    stocksToDisplay: [],
+  });
+
+  const [isBottom, setIsBottom] = useState(false);
+
   useEffect(() => {
-    if (state.mostActive.length === 0) dispatch(requestMountedStocksInfo());
+    if (state.stocks.length === 0) dispatch(requestMountedStocksInfo());
   }, []);
 
-  let interestingStockSize = -1;
-
-  if (size === 2) {
-    interestingStockSize = 2;
+  function handleScroll() {
+    var scrollTop =
+      (document.documentElement && document.documentElement.scrollTop) ||
+      document.body.scrollTop;
+    var scrollHeight =
+      (document.documentElement && document.documentElement.scrollHeight) ||
+      document.body.scrollHeight;
+    console.log(scrollTop, window.innerHeight, scrollHeight);
+    if (scrollTop + window.innerHeight + 50 >= scrollHeight) {
+      console.log('bottom!');
+      setIsBottom(true);
+    }
   }
+
+  const addItems = () => {
+    if (state.stocks.length !== 0) {
+      console.log(state.stocks.slice(1, 5));
+      setStocksToDisplay((prevState) => ({
+        page: prevState.page + 1,
+        stocksToDisplay: prevState.stocksToDisplay.concat(
+          state.stocks.slice(
+            (prevState.page + 1) * 30,
+            (prevState.page + 1) * 30 + 30
+          )
+        ),
+      }));
+      setIsBottom(false);
+    }
+  };
+
+  useEffect(() => {
+    if (!state.isFetching) {
+      addItems();
+    }
+  }, [state.isFetching]);
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    if (isBottom) {
+      addItems();
+    }
+  }, [isBottom]);
+
+  // if (state.stocks.length === 0) {
+  //   return (
+  //     <ul
+  //       className="main-info-"
+  //       id="container"
+  //       style={{ flexDirection: 'column' }}
+  //     >
+  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
+  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
+  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
+  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
+  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
+  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
+  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
+  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
+  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
+  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
+  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
+  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
+  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
+  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
+  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
+  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
+  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
+  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
+  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
+  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
+  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
+  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
+  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
+  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
+  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
+  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
+  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
+  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
+  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
+  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
+  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
+  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
+  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
+  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
+  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
+  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
+  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
+  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
+  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
+  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
+  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
+  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
+  //       {state.isFetching && <p>Please wait...</p>}
+  //     </ul>
+  //   );
+  // }
 
   return (
     <div className="StockList">
       {state.isFetching && <p>Please wait...</p>}
 
-      <h3>Most Active Stocks</h3>
-
+      <h3>Stocks List</h3>
       <div className="main-info-container">
-        {state.mostActive.slice(0, size).map((stock) => {
-          if (stock.changesPercentage[1] === '+') {
-            return (
-              <Stock
-                stock={stock}
-                class={'green'}
-                key={stock.ticker}
-                source={'most-active'}
-              />
-            );
-          }
-          return (
-            <Stock
-              stock={stock}
-              class={'red'}
-              key={stock.ticker}
-              source={'most-active'}
-            />
-          );
-        })}
-      </div>
-
-      <h3>Biggest Percentage Gainers</h3>
-
-      <div className="main-info-container">
-        {state.mostGainer.slice(0, size).map((stock) => {
-          return (
-            <Stock
-              stock={stock}
-              class={'green'}
-              key={stock.ticker}
-              source={'most-gainer'}
-            />
-          );
-        })}
-      </div>
-
-      <h3>Biggest Percentage Losers</h3>
-      <div className="main-info-container">
-        {state.mostLoser.slice(0, size).map((stock) => {
-          return (
-            <Stock
-              stock={stock}
-              class={'red'}
-              key={stock.ticker}
-              source={'most-loser'}
-            />
-          );
-        })}
-      </div>
-
-      <h3>Top NYSE, NASDAQ, and AMEX stocks</h3>
-      <div className="main-info-container interesting-stocks-container">
-        {state.interestingStocks.slice(0, interestingStockSize).map((stock) => {
-          const formatted_stock = {
-            ticker: stock.symbol,
-            companyName: stock.name,
-            price: stock.price,
-            changesPercentage:
-              stock.changesPercentage > 0
-                ? `(+${stock.changesPercentage}%)`
-                : `(${stock.changesPercentage}%)`,
-          };
-          if (formatted_stock.changesPercentage[1] === '+') {
-            return (
-              <Stock
-                stock={formatted_stock}
-                class={'green'}
-                key={formatted_stock.ticker}
-                source={'interesting-stocks'}
-              />
-            );
-          }
-          return (
-            <Stock
-              stock={formatted_stock}
-              class={'red'}
-              key={formatted_stock.ticker}
-              source={'interesting-stocks'}
-            />
-          );
-        })}
+        {stocksToDisplay.stocksToDisplay.map((stock) => (
+          <Stock stock={stock} />
+        ))}
       </div>
     </div>
   );

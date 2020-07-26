@@ -120,9 +120,9 @@ form button {
   font-size: 30px;
 }
 
-.main-info-container {
+.main-info-container,
+.main-info-container div {
   display: flex;
-  width: 100%;
   justify-content: space-evenly;
   flex-wrap: wrap;
   align-items: center;

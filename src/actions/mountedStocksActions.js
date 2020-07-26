@@ -4,30 +4,14 @@ export const requestMountedStocksInfo = () => async (dispatch) => {
       type: 'FETCHING_MOUNTED_STOCKS',
     });
 
-    const responseMostActive = await fetch(
-      `https://financialmodelingprep.com/api/v3/actives?apikey=2d556769d7598ca278b16bc77d65e332`
+    const response = await fetch(
+      `https://financialmodelingprep.com/api/v3/stock/list?apikey=c2c4f86e8fdaf8e06c133e66dc69debd`
     );
-    const mostActive = await responseMostActive.json();
-
-    const responseMostGainers = await fetch(
-      `https://financialmodelingprep.com/api/v3/gainers?apikey=2d556769d7598ca278b16bc77d65e332`
-    );
-    const mostGainers = await responseMostGainers.json();
-
-    const responseMostLosers = await fetch(
-      `https://financialmodelingprep.com/api/v3/losers?apikey=2d556769d7598ca278b16bc77d65e332`
-    );
-    const mostLosers = await responseMostLosers.json();
-
-    const responseInterestingStocks = await fetch(
-      `https://financialmodelingprep.com/api/v3/quote/MSFT,AAPL,GOOG,FB,INTC,CSCO,CMCSA,PEP,ADBE,NVDA,NFLX,PYPL,XOM,C,PFE,GE,AIG,WMT,IBM,BAC,JNJ,GS,PG,JPM,NAK,PLM,TGB,DPW,NGD,AIM,AXU,GMO,SVM,NOG?apikey=2d556769d7598ca278b16bc77d65e332`
-    );
-    const interestingStocks = await responseInterestingStocks.json();
-    console.log(interestingStocks);
+    const data = await response.json();
 
     await dispatch({
       type: 'RECEIVED_MOUNTED_STOCKS',
-      payload: [mostActive, mostGainers, mostLosers, interestingStocks],
+      payload: data,
     });
   } catch (error) {
     dispatch({

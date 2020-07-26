@@ -1,10 +1,7 @@
 const initialState = {
   isFetching: false,
   didInvalidate: false,
-  mostActive: [],
-  mostGainer: [],
-  mostLoser: [],
-  interestingStocks: [],
+  stocks: [],
 };
 
 const searchedStockReducer = (state = initialState, action) => {
@@ -25,10 +22,7 @@ const searchedStockReducer = (state = initialState, action) => {
       return {
         ...state,
         isFetching: false,
-        mostActive: payload[0],
-        mostGainer: payload[1],
-        mostLoser: payload[2],
-        interestingStocks: payload[3],
+        stocks: payload,
       };
     default:
       return state;
