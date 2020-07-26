@@ -117,7 +117,7 @@ function Details({ match }) {
           </div>
           <div className="StocksList-container">
             <h3>Also take a look at</h3>
-            <StocksList size={2} />
+            <StocksList size={10} />
           </div>
         </div>
       </div>

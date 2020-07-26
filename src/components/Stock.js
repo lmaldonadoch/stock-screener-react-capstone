@@ -14,7 +14,7 @@ function Stock({ stock }) {
   }
   return (
     <div className={`info-box ${source}-box`} id={stock.ticker}>
-      <Link to={`/details/${stock.ticker}`}>
+      <Link to={`/details/${stock.symbol}`}>
         <p className="info-box-company" id={stock.ticker}>
           {stock.name}
         </p>
@@ -24,9 +24,6 @@ function Stock({ stock }) {
         <div className="info-box-price-container" id={stock.ticker}>
           <span className={`info-box-price`} id={stock.ticker}>
             ${stock.price}
-          </span>
-          <span className={`info-box-change`} id={stock.ticker}>
-            {stock.changesPercentage}
           </span>
         </div>
       </Link>

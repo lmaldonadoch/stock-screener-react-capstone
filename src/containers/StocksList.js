@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { requestMountedStocksInfo } from '../actions/mountedStocksActions';
 import Stock from '../components/Stock';
 
-function StocksList({ size }) {
+function StocksList({ size = 14000 }) {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.mountedStocks);
   const filterState = useSelector((state) => state.filter);
@@ -15,9 +15,9 @@ function StocksList({ size }) {
 
   const [isBottom, setIsBottom] = useState(false);
 
-  useEffect(() => {
-    if (state.stocks.length === 0) dispatch(requestMountedStocksInfo());
-  }, []);
+  // useEffect(() => {
+  //   if (state.stocks.length === 0) dispatch(requestMountedStocksInfo());
+  // }, []);
 
   function handleScroll() {
     var scrollTop =
@@ -26,12 +26,13 @@ function StocksList({ size }) {
     var scrollHeight =
       (document.documentElement && document.documentElement.scrollHeight) ||
       document.body.scrollHeight;
-    console.log(scrollTop, window.innerHeight, scrollHeight);
     if (scrollTop + window.innerHeight + 50 >= scrollHeight) {
       console.log('bottom!');
       setIsBottom(true);
     }
   }
+
+  console.log(filterState.filter);
 
   const addItems = () => {
     if (state.stocks.length !== 0) {
@@ -66,69 +67,23 @@ function StocksList({ size }) {
     }
   }, [isBottom]);
 
-  // if (state.stocks.length === 0) {
-  //   return (
-  //     <ul
-  //       className="main-info-"
-  //       id="container"
-  //       style={{ flexDirection: 'column' }}
-  //     >
-  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
-  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
-  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
-  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
-  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
-  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
-  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
-  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
-  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
-  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
-  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
-  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
-  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
-  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
-  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
-  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
-  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
-  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
-  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
-  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
-  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
-  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
-  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
-  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
-  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
-  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
-  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
-  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
-  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
-  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
-  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
-  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
-  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
-  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
-  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
-  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
-  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
-  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
-  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
-  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
-  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
-  //       <li style={{ fontSize: 50 + 'px' }}>Hello</li>
-  //       {state.isFetching && <p>Please wait...</p>}
-  //     </ul>
-  //   );
-  // }
-
   return (
     <div className="StockList">
       {state.isFetching && <p>Please wait...</p>}
 
       <h3>Stocks List</h3>
       <div className="main-info-container">
-        {stocksToDisplay.stocksToDisplay.map((stock) => (
-          <Stock stock={stock} />
-        ))}
+        {stocksToDisplay.stocksToDisplay
+          .slice(0, Math.min(size, stocksToDisplay.stocksToDisplay.length))
+          .map((stock) => {
+            if (
+              stock.exchange === filterState.filter ||
+              [null, 'Reset filters'].includes(filterState.filter)
+            ) {
+              return <Stock stock={stock} key={stock.symbol} />;
+            }
+            return false;
+          })}
       </div>
     </div>
   );
