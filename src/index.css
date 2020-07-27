@@ -25,12 +25,13 @@ ul {
   align-items: center;
   justify-content: space-evenly;
   height: 75px;
+  font-size: 18px;
 }
 
 .logo {
   background: url('/logo.png') center center no-repeat;
-  background-size: cover;
-  height: 75px;
+  background-size: contain;
+  height: 50px;
   width: 100px;
 }
 
@@ -47,21 +48,29 @@ li {
   list-style: none;
 }
 
+.logo-big {
+  background: url('/logo.png') center center no-repeat;
+  background-size: contain;
+  height: 150px;
+  width: 300px;
+  margin: 20px auto;
+}
+
 h1 {
   text-align: center;
   margin-top: 50px;
   margin-bottom: 60px;
-  font-size: 60px;
+  font-size: 40px;
   font-weight: 900;
   background: rgb(31, 163, 235);
   /* background: url('/stock-market-chart.png') no-repeat center center; */
-  background: linear-gradient(
+  /* background: linear-gradient(
     90deg,
     rgba(31, 163, 235) 0%,
     rgba(131, 126, 253) 25%,
     rgb(45, 209, 164) 50%,
     rgba(227, 79, 91) 65%
-  );
+  ); */
 
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -133,6 +142,10 @@ form button {
   justify-content: space-evenly;
   flex-wrap: wrap;
   align-items: center;
+}
+
+.Details .main-info-container .main-info {
+  flex-direction: column;
 }
 
 .info-box {
@@ -268,6 +281,9 @@ h3 {
 
 .info-box-company {
   font-size: 11px;
+  width: 80%;
+  text-align: center;
+  margin: 0 auto;
 }
 
 .info-box-ticker {
