@@ -14,7 +14,8 @@ select {
   font-family: 'Montserrat', sans-serif;
 }
 
-nav {
+nav,
+footer {
   background: #fff;
   color: black;
   height: 75px;
@@ -42,6 +43,10 @@ ul a {
 
 .info-box a {
   color: #fff;
+}
+
+.social_container a {
+  color: #000;
 }
 
 ul a:hover {
@@ -326,4 +331,52 @@ select {
   font-size: 20px;
   box-shadow: -6px -6px 8px rgba(31, 163, 235, 0.45);
   margin: 15px;
+}
+
+/* Footer */
+
+footer {
+  position: fixed;
+  top: calc(100vh - 50px);
+  width: 100%;
+  height: 50px;
+}
+
+footer ul li {
+  width: 30%;
+  height: 50px;
+}
+
+.social_container {
+  display: flex;
+  width: 90%;
+  max-width: 500px;
+  font-size: 1.5rem;
+  justify-content: space-between;
+}
+
+.social_container i {
+  transition-property: all;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
+}
+
+.social_container .fa-facebook-square:hover {
+  color: #3b5998;
+}
+
+.social_container .fa-twitter:hover {
+  color: #00acee;
+}
+
+.social_container .fa-linkedin-in:hover {
+  color: #0e76a8;
+}
+
+.social_container .fa-github:hover {
+  color: #30e6cd;
+}
+
+.social_container .fa-envelope:hover {
+  color: #d44638;
 }

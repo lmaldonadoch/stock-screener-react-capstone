@@ -7,11 +7,11 @@
 
 > For this project, I created a Stock Screener, using React and Redux. The project consists of a frontend application that fetches information from an API, stores it in the Redux store, and accesses it using React Hooks when necessary. I implemented the solution using React Routes for the SPA (Single Page Application), two pages, and several containers and components. Redux was used to store and manage the state of every React Component throughout the application. The application also features the possibility of providing detailed information and charting for any stock in the US, Toronto, Paris, Amsterdam, and Brussels markets plus some ETFs.
 
-![screenshot1](/screenshot01.png)
+![screenshot1](./public/screenshot01.png)
 
-![screenshot2](/screenshot02.png)
+![screenshot2](./public/screenshot02.png)
 
-![screenshot2](/screenshot03.png)
+![screenshot2](./public/screenshot03.png)
 
 > This project was very challenging and comprehensive, which required me to learn how to work with asynchronous calls using Redux, React Hooks, and API calls implementation. I used all the knowledge acquired in the Javascript and React/Redux sections of the curriculum to be able to complete this project in the requested time.
 
