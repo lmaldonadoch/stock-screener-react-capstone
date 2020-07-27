@@ -1,11 +1,11 @@
-const requestMountedStocksInfo = () => async dispatch => {
+const requestMountedStocksInfo = () => async (dispatch) => {
   try {
     dispatch({
       type: 'FETCHING_MOUNTED_STOCKS',
     });
 
     const response = await fetch(
-      'https://financialmodelingprep.com/api/v3/stock/list?apikey=c2c4f86e8fdaf8e06c133e66dc69debd',
+      'https://financialmodelingprep.com/api/v3/stock/list?apikey=e9d127c8a783333e2c776289a4f0d487'
     );
     const data = await response.json();
 

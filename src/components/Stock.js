@@ -28,7 +28,7 @@ function Stock({ stock }) {
     source = 'most-gainer';
   } else if (
     ['Paris', 'Amsterdam', 'Brussels', 'Lisbon', 'Toronto', 'Swiss'].includes(
-      stock.exchange,
+      stock.exchange
     )
   ) {
     source = 'most-loser';
@@ -46,8 +46,7 @@ function Stock({ stock }) {
         </p>
         <div className="info-box-price-container" id={stock.ticker}>
           <span className="info-box-price" id={stock.ticker}>
-            $
-            {stock.price}
+            ${stock.price}
           </span>
         </div>
       </Link>
@@ -56,7 +55,7 @@ function Stock({ stock }) {
 }
 
 Stock.propTypes = {
-  stock: PropTypes.func.isRequired,
+  stock: PropTypes.shape({}).isRequired,
 };
 
 export default Stock;

@@ -19,6 +19,10 @@
 
 [Stock Screener](https://stock-screener-capstone.herokuapp.com/)
 
+## Video Presentation
+
+[Loom Recording](https://www.loom.com/share/9e5c76f7d5fe4c15a2154b21ddffe11a)
+
 ## Built With
 
 ### Developing tools
