@@ -3,11 +3,33 @@ import { Link } from 'react-router-dom';
 
 function Stock({ stock }) {
   let source = '';
-  if (stock.exchange === 'Nasdaq Global Select') {
+  if (
+    [
+      'NYSE Arca',
+      'NYSE American',
+      'NYSE',
+      'New York Stock Exchange',
+      'NYSEArca',
+    ].includes(stock.exchange)
+  ) {
     source = 'interesting-stocks';
-  } else if (stock.exchange === 'New York Stock Exchange') {
+  } else if (
+    [
+      'Nasdaq Global Select',
+      'NASDAQ Global Market',
+      'NASDAQ Capital Market',
+      'Nasdaq',
+      'NasdaqGM',
+      'NasdaqCM',
+      'NasdaqGS',
+    ].includes(stock.exchange)
+  ) {
     source = 'most-gainer';
-  } else if (stock.exchange === 'NYSE Arca') {
+  } else if (
+    ['Paris', 'Amsterdam', 'Brussels', 'Lisbon', 'Toronto', 'Swiss'].includes(
+      stock.exchange
+    )
+  ) {
     source = 'most-loser';
   } else {
     source = 'most-active';

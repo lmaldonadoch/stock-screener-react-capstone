@@ -15,9 +15,9 @@ function StocksList({ size = 14000 }) {
 
   const [isBottom, setIsBottom] = useState(false);
 
-  // useEffect(() => {
-  //   if (state.stocks.length === 0) dispatch(requestMountedStocksInfo());
-  // }, []);
+  useEffect(() => {
+    if (state.stocks.length === 0) dispatch(requestMountedStocksInfo());
+  }, []);
 
   function handleScroll() {
     var scrollTop =
@@ -76,9 +76,49 @@ function StocksList({ size = 14000 }) {
         {stocksToDisplay.stocksToDisplay
           .slice(0, Math.min(size, stocksToDisplay.stocksToDisplay.length))
           .map((stock) => {
-            if (
-              stock.exchange === filterState.filter ||
-              [null, 'Reset filters'].includes(filterState.filter)
+            if ([null, 'Reset filters'].includes(filterState.filter)) {
+              return <Stock stock={stock} key={stock.symbol} />;
+            } else if (
+              filterState.filter === 'NYSE' &&
+              [
+                'NYSE Arca',
+                'NYSE American',
+                'NYSE',
+                'New York Stock Exchange',
+                'NYSEArca',
+              ].includes(stock.exchange)
+            ) {
+              return <Stock stock={stock} key={stock.symbol} />;
+            } else if (
+              filterState.filter === 'NASDAQ' &&
+              [
+                'Nasdaq Global Select',
+                'NASDAQ Global Market',
+                'NASDAQ Capital Market',
+                'Nasdaq',
+                'NasdaqGM',
+                'NasdaqCM',
+                'NasdaqGS',
+              ].includes(stock.exchange)
+            ) {
+              return <Stock stock={stock} key={stock.symbol} />;
+            } else if (
+              filterState.filter === 'Foreign Exchanges' &&
+              [
+                'Paris',
+                'Amsterdam',
+                'Brussels',
+                'Lisbon',
+                'Toronto',
+                'Swiss',
+              ].includes(stock.exchange)
+            ) {
+              return <Stock stock={stock} key={stock.symbol} />;
+            } else if (
+              filterState.filter === 'Other' &&
+              ['BATS Exchange', 'Other OTC', 'YHD', 'BATS', 'MCX'].includes(
+                stock.exchange
+              )
             ) {
               return <Stock stock={stock} key={stock.symbol} />;
             }
