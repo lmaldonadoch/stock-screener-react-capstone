@@ -9,7 +9,7 @@ function StocksList({ size = 14000 }) {
   const filterState = useSelector((state) => state.filter);
 
   const [stocksToDisplay, setStocksToDisplay] = useState({
-    page: 0,
+    page: -1,
     stocksToDisplay: [],
   });
 
@@ -27,16 +27,12 @@ function StocksList({ size = 14000 }) {
       (document.documentElement && document.documentElement.scrollHeight) ||
       document.body.scrollHeight;
     if (scrollTop + window.innerHeight + 50 >= scrollHeight) {
-      console.log('bottom!');
       setIsBottom(true);
     }
   }
 
-  console.log(filterState.filter);
-
   const addItems = () => {
     if (state.stocks.length !== 0) {
-      console.log(state.stocks.slice(1, 5));
       setStocksToDisplay((prevState) => ({
         page: prevState.page + 1,
         stocksToDisplay: prevState.stocksToDisplay.concat(
@@ -70,8 +66,6 @@ function StocksList({ size = 14000 }) {
   return (
     <div className="StockList">
       {state.isFetching && <p>Please wait...</p>}
-
-      <h3>Stocks List</h3>
       <div className="main-info-container">
         {stocksToDisplay.stocksToDisplay
           .slice(0, Math.min(size, stocksToDisplay.stocksToDisplay.length))

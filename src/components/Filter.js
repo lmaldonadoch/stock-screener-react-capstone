@@ -3,13 +3,7 @@ import { useDispatch } from 'react-redux';
 import { changeFilter } from '../actions/filterActions';
 
 function Filter() {
-  const filters = [
-    'Reset filters',
-    'NYSE',
-    'NASDAQ',
-    'Foreign Exchanges',
-    'Other',
-  ];
+  const filters = ['Reset filters', 'NYSE', 'NASDAQ', 'Other'];
   const dispatch = useDispatch();
 
   const filterByCategory = (e) => {

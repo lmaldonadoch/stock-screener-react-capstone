@@ -6,11 +6,12 @@ function Nav() {
   return (
     <nav>
       <ul>
+        <div className="logo"></div>
         <Link to="/">
-          <li>Catalog</li>
+          <li>Market Overview</li>
         </Link>
         <Link to="/details">
-          <li>Details</li>
+          <li>Stock Details</li>
         </Link>
         <li>
           <div className="form-container-nav">

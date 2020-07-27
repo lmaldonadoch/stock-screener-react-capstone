@@ -17,14 +17,21 @@ select {
 nav {
   background: #fff;
   color: black;
-  height: 50px;
+  height: 75px;
 }
 
 ul {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  height: 50px;
+  height: 75px;
+}
+
+.logo {
+  background: url('/logo.png') center center no-repeat;
+  background-size: cover;
+  height: 75px;
+  width: 100px;
 }
 
 ul a {
@@ -44,17 +51,17 @@ h1 {
   text-align: center;
   margin-top: 50px;
   margin-bottom: 60px;
-  font-size: 40px;
+  font-size: 60px;
   font-weight: 900;
   background: rgb(31, 163, 235);
-  background: url('/stock-market-chart.png') no-repeat center center;
-  /* background: linear-gradient(
+  /* background: url('/stock-market-chart.png') no-repeat center center; */
+  background: linear-gradient(
     90deg,
     rgba(31, 163, 235) 0%,
     rgba(131, 126, 253) 25%,
     rgb(45, 209, 164) 50%,
     rgba(227, 79, 91) 65%
-  ); */
+  );
 
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -230,7 +237,7 @@ canvas {
   border-radius: 10px;
 }
 
-.StockList h3 {
+h3 {
   margin: 100px auto 50px auto;
   text-align: center;
   font-size: 30px;

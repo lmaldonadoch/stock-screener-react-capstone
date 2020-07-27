@@ -8,6 +8,8 @@ function Catalog() {
       <header className="Catalog-header">
         <h1>Pro Market Analyst</h1>
         <Filter />
+
+        <h3>Market Overview</h3>
         <StocksList />
       </header>
     </div>
