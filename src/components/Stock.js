@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 function Stock({ stock }) {
   let source = '';
@@ -27,7 +28,7 @@ function Stock({ stock }) {
     source = 'most-gainer';
   } else if (
     ['Paris', 'Amsterdam', 'Brussels', 'Lisbon', 'Toronto', 'Swiss'].includes(
-      stock.exchange
+      stock.exchange,
     )
   ) {
     source = 'most-loser';
@@ -44,13 +45,18 @@ function Stock({ stock }) {
           {stock.symbol}
         </p>
         <div className="info-box-price-container" id={stock.ticker}>
-          <span className={`info-box-price`} id={stock.ticker}>
-            ${stock.price}
+          <span className="info-box-price" id={stock.ticker}>
+            $
+            {stock.price}
           </span>
         </div>
       </Link>
     </div>
   );
 }
+
+Stock.propTypes = {
+  stock: PropTypes.func.isRequired,
+};
 
 export default Stock;

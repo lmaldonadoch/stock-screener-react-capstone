@@ -6,7 +6,7 @@ function Nav() {
   return (
     <nav>
       <ul>
-        <div className="logo"></div>
+        <div className="logo" />
         <Link to="/">
           <li>Market Overview</li>
         </Link>

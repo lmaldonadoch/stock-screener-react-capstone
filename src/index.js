@@ -1,17 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import rootReducer from './reducers/rootReducer';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
+import rootReducer from './reducers/rootReducer';
+import * as serviceWorker from './serviceWorker';
+import App from './App';
 
 const store = createStore(
   rootReducer,
-  composeWithDevTools(applyMiddleware(thunk))
+  composeWithDevTools(applyMiddleware(thunk)),
 );
 
 ReactDOM.render(
@@ -20,7 +20,7 @@ ReactDOM.render(
       <App />
     </Provider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
 
 serviceWorker.unregister();

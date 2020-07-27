@@ -6,7 +6,7 @@ function Catalog() {
   return (
     <div className="Catalog">
       <header className="Catalog-header">
-        <div className="logo-big"></div>
+        <div className="logo-big" />
         <Filter />
         <h1>Market Overview</h1>
         <StocksList />

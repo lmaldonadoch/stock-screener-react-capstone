@@ -1,6 +1,6 @@
 *,
-*:before,
-*:after {
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   text-decoration: none;
@@ -40,6 +40,10 @@ ul a {
   font-weight: bold;
 }
 
+.info-box a {
+  color: #fff;
+}
+
 ul a:hover {
   color: rgba(232, 89, 0, 1);
 }
@@ -62,18 +66,7 @@ h1 {
   margin-bottom: 60px;
   font-size: 40px;
   font-weight: 900;
-  background: rgb(31, 163, 235);
-  /* background: url('/stock-market-chart.png') no-repeat center center; */
-  /* background: linear-gradient(
-    90deg,
-    rgba(31, 163, 235) 0%,
-    rgba(131, 126, 253) 25%,
-    rgb(45, 209, 164) 50%,
-    rgba(227, 79, 91) 65%
-  ); */
-
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: rgb(31, 163, 235);
   line-height: 65px;
   padding: 15px 0;
 }
@@ -144,6 +137,12 @@ form button {
   align-items: center;
 }
 
+.main-info,
+.interesting-stocks-box {
+  background-color: #837efd;
+  box-shadow: -6px -6px 8px rgba(131, 126, 253, 0.45);
+}
+
 .Details .main-info-container .main-info {
   flex-direction: column;
 }
@@ -156,16 +155,6 @@ form button {
   min-width: fit-content;
   margin: 30px;
   text-align: center;
-}
-
-.info-box a {
-  color: #fff;
-}
-
-.main-info,
-.interesting-stocks-box {
-  background-color: #837efd;
-  box-shadow: -6px -6px 8px rgba(131, 126, 253, 0.45);
 }
 
 .info-box-data {
@@ -233,13 +222,20 @@ canvas {
   width: 50%;
 }
 
+h3 {
+  margin: 100px auto 50px auto;
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+}
+
 .StocksList-container h3 {
   text-align: center;
   font-size: 25px;
   font-weight: 900;
 }
 
-/*StockList styling*/
+/* StockList styling */
 
 .StockList {
   margin: 30px auto 0 auto;
@@ -248,13 +244,6 @@ canvas {
   box-shadow: -2px -2px 8px rgba(7, 8, 9, 0.3);
   padding: 30px;
   border-radius: 10px;
-}
-
-h3 {
-  margin: 100px auto 50px auto;
-  text-align: center;
-  font-size: 30px;
-  font-weight: bold;
 }
 
 .StockList .main-info-container .info-box {
@@ -316,7 +305,7 @@ h3 {
   color: rgb(204, 255, 208);
 }
 
-/*Filter*/
+/* Filter */
 
 .Filter {
   display: flex;

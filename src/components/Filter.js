@@ -1,12 +1,12 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { changeFilter } from '../actions/filterActions';
+import changeFilter from '../actions/filterActions';
 
 function Filter() {
   const filters = ['Reset filters', 'NYSE', 'NASDAQ', 'Other'];
   const dispatch = useDispatch();
 
-  const filterByCategory = (e) => {
+  const filterByCategory = e => {
     const { value } = e.target;
     dispatch(changeFilter(value));
   };
@@ -16,9 +16,10 @@ function Filter() {
       <select name="filters" onChange={filterByCategory} className="filter">
         <option default value>
           {' '}
-          Filter by Exchange{' '}
+          Filter by Exchange
+          {' '}
         </option>
-        {filters.map((filter) => (
+        {filters.map(filter => (
           <option value={filter} key={filter}>
             {filter}
           </option>

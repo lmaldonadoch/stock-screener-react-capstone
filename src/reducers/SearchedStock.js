@@ -1,4 +1,5 @@
 import moment from 'moment';
+
 const initialState = {
   isFetching: false,
   didInvalidate: false,
@@ -19,6 +20,8 @@ const initialState = {
 
 const searchedStockReducer = (state = initialState, action) => {
   const { type, payload } = action;
+  const price = [];
+  const labels = [];
 
   switch (type) {
     case 'FETCHING_STOCK':
@@ -32,8 +35,6 @@ const searchedStockReducer = (state = initialState, action) => {
         isFetching: false,
       };
     case 'RECEIVED_STOCK':
-      let price = [];
-      let labels = [];
       for (let i = 0; i < 253; i += 1) {
         price.unshift(payload[0].historical[i].close);
         labels.unshift(moment(payload[0].historical[i].date).format('l'));
@@ -42,7 +43,7 @@ const searchedStockReducer = (state = initialState, action) => {
         ...state,
         isFetching: false,
         data: {
-          labels: labels,
+          labels,
           datasets: [
             {
               label: payload[0].symbol,
