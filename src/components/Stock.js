@@ -56,7 +56,8 @@ function Stock({ stock }) {
 }
 
 Stock.propTypes = {
-  stock: PropTypes.objectOf(PropTypes.object()).isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  stock: PropTypes.object.isRequired,
 };
 
 export default Stock;

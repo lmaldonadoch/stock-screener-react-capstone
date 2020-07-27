@@ -160,7 +160,8 @@ function Details({ match }) {
 }
 
 Details.propTypes = {
-  match: PropTypes.objectOf(PropTypes.object()).isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  match: PropTypes.object.isRequired,
 };
 
 export default Details;
