@@ -8,16 +8,15 @@ import StocksList from '../containers/StocksList';
 import requestStockInfo from '../actions/searchedStockActions';
 
 function Details({ match }) {
-  const state = useSelector((state) => state.searchedStock);
+  const state = useSelector(state => state.searchedStock);
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (match.params.stock) {
       if (
-        Object.keys(state.stockInfo).length === 0 ||
-        match.params.stock !== state.data.datasets[0].label
-      )
-        dispatch(requestStockInfo(match.params.stock.toLocaleUpperCase()));
+        Object.keys(state.stockInfo).length === 0
+        || match.params.stock !== state.data.datasets[0].label
+      ) dispatch(requestStockInfo(match.params.stock.toLocaleUpperCase()));
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }, [match]);
@@ -36,13 +35,17 @@ function Details({ match }) {
 
           <div className="info-box main-info">
             <p className="info-box-data">
-              {state.stockInfo.changesPercentage}%
+              {state.stockInfo.changesPercentage}
+              %
             </p>
             <p className="info-box-title"> Change (%) </p>
           </div>
 
           <div className="info-box main-info">
-            <p className="info-box-data">${state.stockInfo.previousClose}</p>
+            <p className="info-box-data">
+              $
+              {state.stockInfo.previousClose}
+            </p>
             <p className="info-box-title"> Previous Day Close </p>
           </div>
 
@@ -61,30 +64,48 @@ function Details({ match }) {
         <div className="chart-info-wrapper">
           <div className="info-wrapper">
             <p className="info-title">Ticker information</p>
-            <p className="last-price">${state.stockInfo.price}</p>
+            <p className="last-price">
+              $
+              {state.stockInfo.price}
+            </p>
             <div className="info-container border-bottom">
               <span className="info-text">Change ($)</span>
-              <span className="info-data">${state.stockInfo.change}</span>
+              <span className="info-data">
+                $
+                {state.stockInfo.change}
+              </span>
             </div>
 
             <div className="info-container border-bottom">
               <span className="info-text">Previous Day High</span>
-              <span className="info-data">${state.stockInfo.dayHigh}</span>
+              <span className="info-data">
+                $
+                {state.stockInfo.dayHigh}
+              </span>
             </div>
 
             <div className="info-container border-bottom">
               <span className="info-text">Previous Day Low</span>
-              <span className="info-data">${state.stockInfo.dayLow}</span>
+              <span className="info-data">
+                $
+                {state.stockInfo.dayLow}
+              </span>
             </div>
 
             <div className="info-container border-bottom">
               <span className="info-text">Year High</span>
-              <span className="info-data">${state.stockInfo.yearHigh}</span>
+              <span className="info-data">
+                $
+                {state.stockInfo.yearHigh}
+              </span>
             </div>
 
             <div className="info-container border-bottom">
               <span className="info-text">Year Low</span>
-              <span className="info-data">${state.stockInfo.yearLow}</span>
+              <span className="info-data">
+                $
+                {state.stockInfo.yearLow}
+              </span>
             </div>
 
             <div className="info-container border-bottom">
@@ -96,7 +117,10 @@ function Details({ match }) {
 
             <div className="info-container border-bottom">
               <span className="info-text">Market Capitalization</span>
-              <span className="info-data">${state.stockInfo.marketCap}</span>
+              <span className="info-data">
+                $
+                {state.stockInfo.marketCap}
+              </span>
             </div>
 
             <div className="info-container border-bottom">
@@ -136,7 +160,7 @@ function Details({ match }) {
 }
 
 Details.propTypes = {
-  match: PropTypes.shape({}).isRequired,
+  match: PropTypes.objectOf(PropTypes.object()).isRequired,
 };
 
 export default Details;
