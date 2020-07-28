@@ -13,7 +13,7 @@ test('Stock is rendered', () => {
   const component = renderer.create(
     <Wrapper>
       <Stock stock={stock} />
-    </Wrapper>
+    </Wrapper>,
   );
 
   const tree = component.toJSON();

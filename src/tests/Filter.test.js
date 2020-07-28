@@ -7,7 +7,7 @@ test('Filter is rendered', () => {
   const component = renderer.create(
     <Wrapper>
       <Filter />
-    </Wrapper>
+    </Wrapper>,
   );
 
   const tree = component.toJSON();

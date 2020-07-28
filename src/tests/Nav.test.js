@@ -7,7 +7,7 @@ test('Nav is rendered', () => {
   const component = renderer.create(
     <Wrapper>
       <Nav />
-    </Wrapper>
+    </Wrapper>,
   );
 
   const tree = component.toJSON();

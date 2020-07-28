@@ -7,7 +7,7 @@ test('Form i rendered', () => {
   const component = renderer.create(
     <Wrapper>
       <Form />
-    </Wrapper>
+    </Wrapper>,
   );
 
   const tree = component.toJSON();

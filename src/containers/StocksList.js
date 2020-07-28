@@ -6,8 +6,8 @@ import Stock from '../components/Stock';
 
 function StocksList({ size = 14000 }) {
   const dispatch = useDispatch();
-  const state = useSelector((state) => state.mountedStocks);
-  const filterState = useSelector((state) => state.filter);
+  const state = useSelector(state => state.mountedStocks);
+  const filterState = useSelector(state => state.filter);
 
   const [stocksToDisplay, setStocksToDisplay] = useState({
     page: -1,
@@ -16,17 +16,15 @@ function StocksList({ size = 14000 }) {
 
   const [isBottom, setIsBottom] = useState(false);
 
-  // useEffect(() => {
-  //   if (state.stocks.length === 0) dispatch(requestMountedStocksInfo());
-  // }, []);
+  useEffect(() => {
+    if (state.stocks.length === 0) dispatch(requestMountedStocksInfo());
+  }, []);
 
   function handleScroll() {
-    const scrollTop =
-      (document.documentElement && document.documentElement.scrollTop) ||
-      document.body.scrollTop;
-    const scrollHeight =
-      (document.documentElement && document.documentElement.scrollHeight) ||
-      document.body.scrollHeight;
+    const scrollTop = (document.documentElement && document.documentElement.scrollTop)
+      || document.body.scrollTop;
+    const scrollHeight = (document.documentElement && document.documentElement.scrollHeight)
+      || document.body.scrollHeight;
     if (scrollTop + window.innerHeight + 50 >= scrollHeight) {
       setIsBottom(true);
     }
@@ -34,13 +32,13 @@ function StocksList({ size = 14000 }) {
 
   const addItems = () => {
     if (state.stocks.length !== 0) {
-      setStocksToDisplay((prevState) => ({
+      setStocksToDisplay(prevState => ({
         page: prevState.page + 1,
         stocksToDisplay: prevState.stocksToDisplay.concat(
           state.stocks.slice(
             (prevState.page + 1) * 30,
-            (prevState.page + 1) * 30 + 30
-          )
+            (prevState.page + 1) * 30 + 30,
+          ),
         ),
       }));
       setIsBottom(false);
@@ -70,17 +68,17 @@ function StocksList({ size = 14000 }) {
       <div className="main-info-container">
         {stocksToDisplay.stocksToDisplay
           .slice(0, Math.min(size, stocksToDisplay.stocksToDisplay.length))
-          .map((stock) => {
+          .map(stock => {
             if (
               [null, 'Reset filters', 'Filter by Exchange'].includes(
-                filterState.filter
+                filterState.filter,
               )
             ) {
               return <Stock stock={stock} key={stock.symbol} />;
             }
             if (
-              filterState.filter === 'NYSE' &&
-              [
+              filterState.filter === 'NYSE'
+              && [
                 'NYSE Arca',
                 'NYSE American',
                 'NYSE',
@@ -91,8 +89,8 @@ function StocksList({ size = 14000 }) {
               return <Stock stock={stock} key={stock.symbol} />;
             }
             if (
-              filterState.filter === 'NASDAQ' &&
-              [
+              filterState.filter === 'NASDAQ'
+              && [
                 'Nasdaq Global Select',
                 'NASDAQ Global Market',
                 'NASDAQ Capital Market',
@@ -105,8 +103,8 @@ function StocksList({ size = 14000 }) {
               return <Stock stock={stock} key={stock.symbol} />;
             }
             if (
-              filterState.filter === 'Foreign Exchanges' &&
-              [
+              filterState.filter === 'Foreign Exchanges'
+              && [
                 'Paris',
                 'Amsterdam',
                 'Brussels',
@@ -118,9 +116,9 @@ function StocksList({ size = 14000 }) {
               return <Stock stock={stock} key={stock.symbol} />;
             }
             if (
-              filterState.filter === 'Other' &&
-              ['BATS Exchange', 'Other OTC', 'YHD', 'BATS', 'MCX'].includes(
-                stock.exchange
+              filterState.filter === 'Other'
+              && ['BATS Exchange', 'Other OTC', 'YHD', 'BATS', 'MCX'].includes(
+                stock.exchange,
               )
             ) {
               return <Stock stock={stock} key={stock.symbol} />;
