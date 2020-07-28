@@ -42,6 +42,12 @@
 
 - Heroku
 
+### Testing
+
+- Enzyme
+- React Test Renderer
+- React Testing Library
+
 ## Getting Started
 
 To get started with the app, please follow these steps:
