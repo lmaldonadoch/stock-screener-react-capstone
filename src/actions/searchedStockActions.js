@@ -5,12 +5,12 @@ const requestStockInfo = data => async dispatch => {
     });
 
     const response = await fetch(
-      `https://financialmodelingprep.com/api/v3/historical-price-full/${data}?serietype=line&apikey=e9d127c8a783333e2c776289a4f0d487`,
+      `https://financialmodelingprep.com/api/v3/historical-price-full/${data}?serietype=line&apikey=fd5ccaaa835e962f809f6ad5ac53c6c7`,
     );
     const info = await response.json();
 
     const response2 = await fetch(
-      `https://financialmodelingprep.com/api/v3/quote/${data}?apikey=e9d127c8a783333e2c776289a4f0d487`,
+      `https://financialmodelingprep.com/api/v3/quote/${data}?apikey=fd5ccaaa835e962f809f6ad5ac53c6c7`,
     );
     const info2 = await response2.json();
 

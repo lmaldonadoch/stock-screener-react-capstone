@@ -5,7 +5,7 @@ const requestMountedStocksInfo = () => async dispatch => {
     });
 
     const response = await fetch(
-      'https://financialmodelingprep.com/api/v3/stock/list?apikey=e9d127c8a783333e2c776289a4f0d487',
+      'https://financialmodelingprep.com/api/v3/stock/list?apikey=fd5ccaaa835e962f809f6ad5ac53c6c7',
     );
     const data = await response.json();
 
