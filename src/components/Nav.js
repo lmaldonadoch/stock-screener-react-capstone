@@ -8,10 +8,10 @@ function Nav() {
       <ul>
         <div className="logo" />
         <Link to="/">
-          <li>Market Overview</li>
+          <li id="home">Market Overview</li>
         </Link>
         <Link to="/details">
-          <li>Stock Details</li>
+          <li id="details">Stock Details</li>
         </Link>
         <li>
           <div className="form-container-nav">

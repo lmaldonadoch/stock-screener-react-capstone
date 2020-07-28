@@ -28,7 +28,7 @@ function Stock({ stock }) {
     source = 'most-gainer';
   } else if (
     ['Paris', 'Amsterdam', 'Brussels', 'Lisbon', 'Toronto', 'Swiss'].includes(
-      stock.exchange,
+      stock.exchange
     )
   ) {
     source = 'most-loser';
@@ -36,18 +36,17 @@ function Stock({ stock }) {
     source = 'most-active';
   }
   return (
-    <div className={`info-box ${source}-box`} id={stock.ticker}>
+    <div className={`info-box ${source}-box`} id={stock.symbol}>
       <Link to={`/details/${stock.symbol}`}>
-        <p className="info-box-company" id={stock.ticker}>
+        <p className="info-box-company" id={stock.symbol}>
           {stock.name}
         </p>
-        <p className="info-box-ticker" id={stock.ticker}>
+        <p className="info-box-ticker" id={stock.symbol}>
           {stock.symbol}
         </p>
-        <div className="info-box-price-container" id={stock.ticker}>
-          <span className="info-box-price" id={stock.ticker}>
-            $
-            {stock.price}
+        <div className="info-box-price-container" id={stock.symbol}>
+          <span className="info-box-price" id={stock.symbol}>
+            ${stock.price}
           </span>
         </div>
       </Link>

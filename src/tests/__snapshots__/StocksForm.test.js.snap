@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Form i rendered 1`] = `
+<form
+  className="books-form"
+  onSubmit={[Function]}
+>
+  <input
+    className="title-input"
+    name="title"
+    onChange={[Function]}
+    placeholder="Search Symbol"
+    type="text"
+  />
+  <button
+    type="submit"
+  >
+    <i
+      className="fas fa-chart-line"
+    />
+  </button>
+</form>
+`;
