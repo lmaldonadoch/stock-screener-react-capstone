@@ -1,37 +1,59 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import Enzyme, { mount } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 import Filter from '../components/Filter';
 import Wrapper from './Wrapper';
-import { mount, configure } from 'enzyme';
-import { Provider } from 'react-redux';
-import thunk from 'redux-thunk';
-import configureMockStore from 'redux-mock-store';
-import Adapter from 'enzyme-adapter-react-16';
 
-test('Filter is rendered', () => {
+Enzyme.configure({ adapter: new Adapter() });
+
+test('Filter should match snapshot', () => {
   const component = renderer.create(
     <Wrapper>
       <Filter />
-    </Wrapper>
+    </Wrapper>,
   );
 
   const tree = component.toJSON();
   expect(tree).toMatchSnapshot();
 });
 
-const mockStore = configureMockStore([thunk]);
-configure({ adapter: new Adapter() });
-
-describe('NAV', () => {
-  it('should find filter', () => {
-    const store = mockStore({
-      filter: null,
-    });
-    const wrapper = mount(
-      <Provider store={store}>
+describe('Filter', () => {
+  let wrapper;
+  beforeEach(() => {
+    wrapper = mount(
+      <Wrapper>
         <Filter />
-      </Provider>
+      </Wrapper>,
     );
-    expect(wrapper.find('filter')).toEqual({});
+  });
+  it('is receiving and running JS', () => {
+    expect(2 + 3).toEqual(5);
+  });
+
+  it('renders', () => {
+    expect(wrapper).not.toBeNull();
+  });
+
+  it('The default value for filter is Filter by Exchange', () => {
+    expect(wrapper.find('option').first().text()).toEqual(
+      ' Filter by Exchange ',
+    );
+  });
+
+  it('has an option to reset filters', () => {
+    expect(wrapper.find({ value: 'Reset filters' }).text()).not.toBeNull();
+  });
+
+  it('has a filter for NASDAQ exchange', () => {
+    expect(wrapper.find({ value: 'NASDAQ' }).text()).toEqual('NASDAQ');
+  });
+
+  it('has a filter for NYSE exchange', () => {
+    expect(wrapper.find({ value: 'NYSE' }).text()).toEqual('NYSE');
+  });
+
+  it('has a filter for Other exchange', () => {
+    expect(wrapper.find({ value: 'Other' }).text()).toEqual('Other');
   });
 });
