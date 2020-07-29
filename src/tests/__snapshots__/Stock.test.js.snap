@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Stock is rendered 1`] = `
+<div
+  className="info-box most-gainer-box"
+  id="AAPL"
+>
+  <a
+    href="/details/AAPL"
+    onClick={[Function]}
+  >
+    <p
+      className="info-box-company"
+      id="AAPL"
+    >
+      Apple Inc.
+    </p>
+    <p
+      className="info-box-ticker"
+      id="AAPL"
+    >
+      AAPL
+    </p>
+    <div
+      className="info-box-price-container"
+      id="AAPL"
+    >
+      <span
+        className="info-box-price"
+        id="AAPL"
+      >
+        $
+        320
+      </span>
+    </div>
+  </a>
+</div>
+`;
+
+exports[`Stock should match snapshot 1`] = `
+<div
+  className="info-box most-gainer-box"
+  id="AAPL"
+>
+  <a
+    href="/details/AAPL"
+    onClick={[Function]}
+  >
+    <p
+      className="info-box-company"
+      id="AAPL"
+    >
+      Apple Inc.
+    </p>
+    <p
+      className="info-box-ticker"
+      id="AAPL"
+    >
+      AAPL
+    </p>
+    <div
+      className="info-box-price-container"
+      id="AAPL"
+    >
+      <span
+        className="info-box-price"
+        id="AAPL"
+      >
+        $
+        320
+      </span>
+    </div>
+  </a>
+</div>
+`;

@@ -1,0 +1,111 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Nav is rendered 1`] = `
+<nav>
+  <ul>
+    <div
+      className="logo"
+    />
+    <a
+      href="/"
+      onClick={[Function]}
+    >
+      <li
+        id="home"
+      >
+        Market Overview
+      </li>
+    </a>
+    <a
+      href="/details"
+      onClick={[Function]}
+    >
+      <li
+        id="details"
+      >
+        Stock Details
+      </li>
+    </a>
+    <li>
+      <div
+        className="form-container-nav"
+      >
+        <form
+          className="books-form"
+          onSubmit={[Function]}
+        >
+          <input
+            className="title-input"
+            name="title"
+            onChange={[Function]}
+            placeholder="Search Symbol"
+            type="text"
+          />
+          <button
+            type="submit"
+          >
+            <i
+              className="fas fa-chart-line"
+            />
+          </button>
+        </form>
+      </div>
+    </li>
+  </ul>
+</nav>
+`;
+
+exports[`Nav should match snapshot 1`] = `
+<nav>
+  <ul>
+    <div
+      className="logo"
+    />
+    <a
+      href="/"
+      onClick={[Function]}
+    >
+      <li
+        id="home"
+      >
+        Market Overview
+      </li>
+    </a>
+    <a
+      href="/details"
+      onClick={[Function]}
+    >
+      <li
+        id="details"
+      >
+        Stock Details
+      </li>
+    </a>
+    <li>
+      <div
+        className="form-container-nav"
+      >
+        <form
+          className="books-form"
+          onSubmit={[Function]}
+        >
+          <input
+            className="title-input"
+            name="title"
+            onChange={[Function]}
+            placeholder="Search Symbol"
+            type="text"
+          />
+          <button
+            type="submit"
+          >
+            <i
+              className="fas fa-chart-line"
+            />
+          </button>
+        </form>
+      </div>
+    </li>
+  </ul>
+</nav>
+`;

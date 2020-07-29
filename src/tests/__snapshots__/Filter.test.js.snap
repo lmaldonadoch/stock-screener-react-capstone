@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Filter is rendered 1`] = `
+<div
+  className="Filter"
+>
+  <select
+    className="filter"
+    name="filters"
+    onChange={[Function]}
+  >
+    <option
+      default={true}
+      value={true}
+    >
+       
+      Filter by Exchange
+       
+    </option>
+    <option
+      value="Reset filters"
+    >
+      Reset filters
+    </option>
+    <option
+      value="NYSE"
+    >
+      NYSE
+    </option>
+    <option
+      value="NASDAQ"
+    >
+      NASDAQ
+    </option>
+    <option
+      value="Other"
+    >
+      Other
+    </option>
+  </select>
+</div>
+`;
+
+exports[`Filter should match snapshot 1`] = `
+<div
+  className="Filter"
+>
+  <select
+    className="filter"
+    name="filters"
+    onChange={[Function]}
+  >
+    <option
+      default={true}
+      value={true}
+    >
+       
+      Filter by Exchange
+       
+    </option>
+    <option
+      value="Reset filters"
+    >
+      Reset filters
+    </option>
+    <option
+      value="NYSE"
+    >
+      NYSE
+    </option>
+    <option
+      value="NASDAQ"
+    >
+      NASDAQ
+    </option>
+    <option
+      value="Other"
+    >
+      Other
+    </option>
+  </select>
+</div>
+`;
